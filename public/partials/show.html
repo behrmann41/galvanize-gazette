@@ -13,17 +13,13 @@
   <div class="row">
     <div class="col-md-6">
       <h2>Opinions</h2>
-      <form class="form-horizontal" ng-submit='newOpinion()'>
+      <form ng-submit='newOpinion()'>
         <div class="form-group">
-          <label for="opinions" class="col-sm-2 control-label">Please enter opinions here:</label>
-          <div class="col-sm-10">
-            <textarea class="form-control" ng-model='opinion' rows="3"></textarea>
-          </div>
+          <label for="opinions" class="control-label">Whats your opinion?</label>
+          <textarea class="form-control" ng-model='opinion' rows="3"></textarea>
         </div>
         <div class="form-group">
-          <div class="col-sm-offset-2 col-sm-10">
-            <button class="btn btn-primary">Opine!</button>
-          </div>
+          <button class="btn btn-primary">Opine!</button>
         </div>
       </form>
       <table class='table' ng-repeat='opine in opinions'>

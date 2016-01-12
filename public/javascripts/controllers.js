@@ -1,14 +1,16 @@
 app.controller('HomeController', ['$scope', '$rootScope' ,'addstory', function ($scope, $rootScope, addstory) {
 
   $scope.story = true;
+  $scope.toggle = 'Hide'
   addstory.getAllStories().then(function (stories) {
     $rootScope.allstories = stories.data;
   })
   $scope.storyDetails = function () {
-    if ($scope.story === true){
-      $scope.story = false;
+    $scope.story = !$scope.story;
+    if ($scope.story === false){
+      $scope.toggle = 'Show'
     } else {
-      $scope.story = true;
+      $scope.toggle = 'Hide'
     }
   }
 
