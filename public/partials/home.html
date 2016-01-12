@@ -1,7 +1,7 @@
 <div class="container">
-  <h2>Add a Story</h2>
-  <a ng-click='' class='pull-right'>Hide</a>
-  <div class="row">
+  <button class='pull-right' ng-click='storyDetails()'>Hide</button>
+  <div class="row" ng-show='story'>
+    <h2>Add a Story</h2>
     <div class="col-md-6">
       <form class="form-horizontal" ng-submit='newStory()'>
         <div class="form-group">
@@ -38,22 +38,10 @@
   </div>
   <div class="row">
     <h2>Today's news</h2>
-    <div class="col-md-4">
-      <p>
-        pic1
-      </p>
-    </div>
-    <div class="col-md-4">
-      <p>
-        pic2
-      </p>
-    </div>
-    <div class="col-md-4">
-      <p>
-        pic3
-      </p>
+    <div class="col-md-4" ng-repeat='story in allstories'>
+      <img ng-src='{{story.imageurl}}' alt="" />
+      <br>
+      <a href="/show/{{story._id}}">{{story.title}}</a>
     </div>
   </div>
-  <a href="/show">Show</a>
-
 </div>

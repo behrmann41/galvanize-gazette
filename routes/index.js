@@ -6,16 +6,33 @@ var stories = db.get('stories')
 /* GET home page. */
 
 router.post('/new', function (req, res, next){
-  console.log(req.body);
-  console.log(req.body.title);
   stories.insert({title: req.body.title,
                   link: req.body.link,
                   imageurl: req.body.imageurl,
-                  summary: req.body.summary
+                  summary: req.body.summary,
+                  opinions: []
                 })
     .then(function (response) {
-      console.log(response);
+      res.json(response);
     })
+})
+
+router.get('/findall', function (req, res, next) {
+  stories.find({}).then(function (stories) {
+    res.json(stories);
+  })
+})
+
+router.get('/findone/:id', function (req, res, next) {
+  stories.findById(req.params.id).then(function (story) {
+    res.json(story)
+  })
+})
+
+router.post('/opinions/:id', function (req, res, next) {
+  stories.update({_id: req.params.id}, {$push: {opinions: req.body.opinion}}).then(function (data) {
+    console.log(data);
+  })
 })
 
 router.get('*', function(req, res, next) {

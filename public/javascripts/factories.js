@@ -9,5 +9,23 @@ app.factory('addstory',function ($http) {
                 }
     return $http.post('/new', data);
   }
-  return obj
+
+  obj.getAllStories = function () {
+    return $http.get('/findall')
+  }
+  return obj;
+})
+
+app.factory('showstory', function ($http) {
+  var obj = {}
+
+  obj.findStoryId = function (id) {
+    return $http.get('/findone/' + id)
+  }
+
+  obj.addOpinion = function (id, opiniontext) {
+    var data = {opinion: opiniontext}
+    return $http.post('/opinions/' + id, data)
+  }
+  return obj;
 })
